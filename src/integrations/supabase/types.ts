@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          conditions: string[]
+          created_at: string
+          daily_activity: string
+          email: string
+          goal: string
+          id: string
+          kg_range: string | null
+          name: string
+          obstacle: string
+          phone: string
+          telegram_sent: boolean
+          training: string
+        }
+        Insert: {
+          conditions: string[]
+          created_at?: string
+          daily_activity: string
+          email: string
+          goal: string
+          id?: string
+          kg_range?: string | null
+          name: string
+          obstacle: string
+          phone: string
+          telegram_sent?: boolean
+          training: string
+        }
+        Update: {
+          conditions?: string[]
+          created_at?: string
+          daily_activity?: string
+          email?: string
+          goal?: string
+          id?: string
+          kg_range?: string | null
+          name?: string
+          obstacle?: string
+          phone?: string
+          telegram_sent?: boolean
+          training?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
