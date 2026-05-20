@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /tu-plan
+Disallow: /formulario

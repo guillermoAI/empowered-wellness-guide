@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TuPlanRouteImport } from './routes/tu-plan'
+import { Route as FormularioRouteImport } from './routes/formulario'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TuPlanRoute = TuPlanRouteImport.update({
+  id: '/tu-plan',
+  path: '/tu-plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormularioRoute = FormularioRouteImport.update({
+  id: '/formulario',
+  path: '/formulario',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/formulario': typeof FormularioRoute
+  '/tu-plan': typeof TuPlanRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/formulario': typeof FormularioRoute
+  '/tu-plan': typeof TuPlanRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/formulario': typeof FormularioRoute
+  '/tu-plan': typeof TuPlanRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/formulario' | '/tu-plan'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/formulario' | '/tu-plan'
+  id: '__root__' | '/' | '/formulario' | '/tu-plan'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FormularioRoute: typeof FormularioRoute
+  TuPlanRoute: typeof TuPlanRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tu-plan': {
+      id: '/tu-plan'
+      path: '/tu-plan'
+      fullPath: '/tu-plan'
+      preLoaderRoute: typeof TuPlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formulario': {
+      id: '/formulario'
+      path: '/formulario'
+      fullPath: '/formulario'
+      preLoaderRoute: typeof FormularioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +87,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FormularioRoute: FormularioRoute,
+  TuPlanRoute: TuPlanRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
