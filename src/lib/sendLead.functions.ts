@@ -3,9 +3,22 @@ import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 const GOAL_LABEL: Record<string, string> = {
-  perder: "Perder peso",
-  mantener: "Mantener y tonificar",
-  ganar: "Ganar masa muscular",
+  "lose-1-10": "Pérdida de peso (1-10 kg)",
+  "lose-10-plus": "Pérdida de peso (10+ kg)",
+  "tone": "Tonificar",
+  "fat-loss-muscle": "Pérdida grasa + masa muscular",
+  "anti-inflammation": "Reducir inflamación abdominal",
+};
+const WEIGHT_LABEL: Record<string, string> = {
+  "lt-60": "Menos de 60 kg",
+  "60-70": "60-70 kg",
+  "70-80": "70-80 kg",
+  "gt-80": "Más de 80 kg",
+};
+const AGE_LABEL: Record<string, string> = {
+  "35-50": "35-50 años",
+  "50-60": "50-60 años",
+  "60-plus": "60+ años",
 };
 const ACTIVITY_LABEL: Record<string, string> = {
   "sit-less-8": "Sentada <8h",
@@ -37,8 +50,9 @@ const LeadSchema = z.object({
   name: z.string().trim().min(2).max(80),
   email: z.string().trim().email().max(180),
   phone: z.string().trim().min(6).max(30),
-  goal: z.enum(["perder", "mantener", "ganar"]),
-  kgRange: z.enum(["1-5", "5-10", "10-15", "15+"]).optional().nullable(),
+  goal: z.enum(["lose-1-10", "lose-10-plus", "tone", "fat-loss-muscle", "anti-inflammation"]),
+  weightRange: z.enum(["lt-60", "60-70", "70-80", "gt-80"]),
+  ageRange: z.enum(["35-50", "50-60", "60-plus"]),
   dailyActivity: z.enum(["sit-less-8", "sit-more-8", "active", "no-work"]),
   training: z.enum(["2-3-home", "2-3-gym", "4-5-home", "4-5-gym"]),
   conditions: z.array(z.enum(["menopause", "joints", "metabolic", "none"])).min(1).max(4),
@@ -48,7 +62,8 @@ const LeadSchema = z.object({
 export const sendLead = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => LeadSchema.parse(input))
   .handler(async ({ data }) => {
-    // 1. Save lead (RLS bypassed via service role)
+    // Store weightRange + ageRange concatenated into existing kg_range column to avoid migration.
+    const meta = `${data.weightRange}|${data.ageRange}`;
     const { data: lead, error } = await supabaseAdmin
       .from("leads")
       .insert({
@@ -56,7 +71,7 @@ export const sendLead = createServerFn({ method: "POST" })
         email: data.email,
         phone: data.phone,
         goal: data.goal,
-        kg_range: data.kgRange ?? null,
+        kg_range: meta,
         daily_activity: data.dailyActivity,
         training: data.training,
         conditions: data.conditions,
@@ -70,18 +85,18 @@ export const sendLead = createServerFn({ method: "POST" })
       return { success: false, error: "No se pudo guardar el lead." };
     }
 
-    // 2. Send to Telegram (best-effort; lead already saved)
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
     if (token && chatId) {
-      const kgLine = data.kgRange ? `\nObjetivo en kg: ${data.kgRange}` : "";
       const conditionsList = data.conditions.map((c) => CONDITIONS_LABEL[c]).join(", ");
       const message =
-        `<b>🟣 Nuevo lead — ${data.name}</b>\n\n` +
+        `<b>🌸 Nuevo lead — ${data.name}</b>\n\n` +
         `📧 ${data.email}\n📱 ${data.phone}\n\n` +
         `<b>Calificación</b>\n` +
-        `Objetivo: ${GOAL_LABEL[data.goal]}${kgLine}\n` +
+        `Objetivo: ${GOAL_LABEL[data.goal]}\n` +
+        `Peso: ${WEIGHT_LABEL[data.weightRange]}\n` +
+        `Edad: ${AGE_LABEL[data.ageRange]}\n` +
         `Día a día: ${ACTIVITY_LABEL[data.dailyActivity]}\n` +
         `Entrenamiento: ${TRAINING_LABEL[data.training]}\n` +
         `Condiciones: ${conditionsList}\n` +
@@ -102,8 +117,6 @@ export const sendLead = createServerFn({ method: "POST" })
       } catch (e) {
         console.error("Telegram fetch error:", e);
       }
-    } else {
-      console.warn("TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID missing");
     }
 
     return { success: true, leadId: lead.id };
