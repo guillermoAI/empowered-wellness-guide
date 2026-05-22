@@ -30,45 +30,59 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-rose-soft: var(--rose-soft);
   --color-rose-tint: var(--rose-tint);
+  --color-rose-deep: var(--rose-deep);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --animate-shimmer: shimmer 2s linear infinite;
+  --animate-pulse-soft: pulseSoft 2.2s ease-in-out infinite;
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  @keyframes pulseSoft {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.96); }
+  }
 }
 
 :root {
-  /* Brand palette from spec */
-  --background: oklch(0.985 0.002 60);          /* #FAFAFA warm white */
-  --foreground: oklch(0.205 0.005 60);          /* #1A1A1A */
+  /* Rose-forward palette — minimal, warm, feminine */
+  --background: oklch(0.985 0.008 18);          /* soft warm rose-white */
+  --foreground: oklch(0.22 0.015 18);           /* warm near-black */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.205 0.005 60);
+  --card-foreground: oklch(0.22 0.015 18);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.205 0.005 60);
+  --popover-foreground: oklch(0.22 0.015 18);
 
-  --primary: oklch(0.745 0.063 14);             /* #D49AA4 rose accent */
-  --primary-foreground: oklch(0.985 0.002 60);
+  --primary: oklch(0.68 0.115 14);              /* deeper rose */
+  --primary-foreground: oklch(0.99 0.005 18);
 
-  --secondary: oklch(0.93 0.022 14);            /* #F4DCE0 rose soft */
-  --secondary-foreground: oklch(0.205 0.005 60);
+  --secondary: oklch(0.94 0.028 14);            /* rose soft */
+  --secondary-foreground: oklch(0.22 0.015 18);
 
-  --muted: oklch(0.96 0.005 60);
-  --muted-foreground: oklch(0.515 0.005 60);    /* #6B6B6B */
+  --muted: oklch(0.965 0.012 18);
+  --muted-foreground: oklch(0.5 0.015 18);
 
-  --accent: oklch(0.96 0.018 14);               /* #FBF1F3 selection bg */
-  --accent-foreground: oklch(0.205 0.005 60);
+  --accent: oklch(0.965 0.022 14);              /* rose tint */
+  --accent-foreground: oklch(0.22 0.015 18);
 
-  --rose-soft: oklch(0.93 0.022 14);            /* #F4DCE0 */
-  --rose-tint: oklch(0.96 0.018 14);            /* #FBF1F3 */
+  --rose-soft: oklch(0.94 0.028 14);
+  --rose-tint: oklch(0.965 0.022 14);
+  --rose-deep: oklch(0.55 0.13 12);
 
-  --destructive: oklch(0.59 0.11 17);           /* #C77575 */
-  --destructive-foreground: oklch(0.985 0.002 60);
+  --destructive: oklch(0.59 0.11 17);
+  --destructive-foreground: oklch(0.99 0.005 18);
 
-  --border: oklch(0.92 0.002 60);               /* #EAEAEA */
-  --input: oklch(0.92 0.002 60);
-  --ring: oklch(0.745 0.063 14);
+  --border: oklch(0.93 0.012 18);
+  --input: oklch(0.93 0.012 18);
+  --ring: oklch(0.68 0.115 14);
 
-  --radius: 12px;
+  --radius: 14px;
 }
 
 @layer base {
@@ -83,9 +97,9 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.15;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     color: var(--color-foreground);
   }
   input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible {
@@ -97,4 +111,15 @@
 @layer utilities {
   .font-serif { font-family: var(--font-serif); }
   .font-sans  { font-family: var(--font-sans); }
+
+  .loader-dots span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    margin: 0 2px;
+    background: currentColor;
+    border-radius: 999px;
+    animation: pulseSoft 1.2s ease-in-out infinite;
+  }
+  .loader-dots span:nth-child(2) { animation-delay: 0.15s; }
+  .loader-dots span:nth-child(3) { animation-delay: 0.3s; }
 }

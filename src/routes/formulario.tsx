@@ -5,15 +5,15 @@ import { ArrowLeft, Check } from "lucide-react";
 import { z } from "zod";
 import { useServerFn } from "@tanstack/react-start";
 import { sendLead } from "@/lib/sendLead.functions";
-import type { FormAnswers, Goal, KgRange, Activity, Training, Condition, Obstacle } from "@/lib/planGenerator";
+import type {
+  FormAnswers, Goal, WeightRange, AgeRange, Activity, Training, Condition, Obstacle,
+} from "@/lib/planGenerator";
 
 export const Route = createFileRoute("/formulario")({ component: FormularioPage });
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
-type State = Partial<FormAnswers> & {
-  conditions: Condition[];
-};
+type State = Partial<FormAnswers> & { conditions: Condition[] };
 
 const emailSchema = z.string().email("Introduce un email válido");
 const phoneSchema = z.string().min(6, "Introduce un teléfono válido").regex(/^[+0-9\s\-()]+$/, "Solo números y +");
@@ -28,14 +28,10 @@ function FormularioPage() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const showKg = state.goal === "perder" || state.goal === "ganar";
-
-  const steps: string[] = useMemo(() => {
-    const base = ["name", "goal"];
-    if (showKg) base.push("kg");
-    base.push("activity", "training", "conditions", "obstacle", "email", "phone");
-    return base;
-  }, [showKg]);
+  const steps: string[] = useMemo(
+    () => ["name", "goal", "weight", "age", "activity", "training", "conditions", "obstacle", "email", "phone"],
+    [],
+  );
 
   const total = steps.length;
   const current = steps[stepIdx];
@@ -45,7 +41,8 @@ function FormularioPage() {
     switch (current) {
       case "name": return !!state.name && state.name.trim().length >= 2;
       case "goal": return !!state.goal;
-      case "kg": return !!state.kgRange;
+      case "weight": return !!state.weightRange;
+      case "age": return !!state.ageRange;
       case "activity": return !!state.dailyActivity;
       case "training": return !!state.training;
       case "conditions": return state.conditions.length > 0;
@@ -59,16 +56,16 @@ function FormularioPage() {
   const next = async () => {
     if (!isStepValid()) return;
     if (stepIdx === total - 1) {
-      // submit
       setSubmitting(true);
       setSubmitError(null);
       try {
-        const payload = {
+        const payload: FormAnswers = {
           name: state.name!,
           email: state.email!,
           phone: state.phone!,
           goal: state.goal!,
-          kgRange: showKg ? state.kgRange : undefined,
+          weightRange: state.weightRange!,
+          ageRange: state.ageRange!,
           dailyActivity: state.dailyActivity!,
           training: state.training!,
           conditions: state.conditions,
@@ -88,17 +85,13 @@ function FormularioPage() {
   };
 
   const back = () => {
-    if (stepIdx === 0) {
-      navigate({ to: "/" });
-      return;
-    }
+    if (stepIdx === 0) { navigate({ to: "/" }); return; }
     setDirection(-1);
     setStepIdx((i) => i - 1);
   };
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      {/* Progress bar */}
       <div className="fixed inset-x-0 top-0 z-30 h-[2px] bg-border">
         <motion.div
           className="h-full bg-primary"
@@ -129,7 +122,7 @@ function FormularioPage() {
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.28, ease: easing }}
             >
-              {renderStep(current!, state, setState, showKg)}
+              {renderStep(current!, state, setState)}
             </motion.div>
           </AnimatePresence>
 
@@ -141,9 +134,11 @@ function FormularioPage() {
             <button
               onClick={next}
               disabled={!isStepValid() || submitting}
-              className="inline-flex h-12 items-center rounded-full bg-primary px-8 text-base font-medium text-primary-foreground transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
+              className="inline-flex h-12 min-w-[180px] items-center justify-center rounded-full bg-primary px-8 text-base font-medium text-primary-foreground transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
             >
-              {submitting ? "Enviando…" : stepIdx === total - 1 ? "Recibir mi plan" : "Siguiente"}
+              {submitting
+                ? (<span className="loader-dots text-primary-foreground"><span /><span /><span /></span>)
+                : stepIdx === total - 1 ? "Recibir mi plan" : "Siguiente"}
             </button>
           </div>
         </div>
@@ -160,7 +155,6 @@ function renderStep(
   step: string,
   s: State,
   set: (u: (p: State) => State) => void,
-  showKg: boolean,
 ) {
   switch (step) {
     case "name":
@@ -176,35 +170,49 @@ function renderStep(
       );
     case "goal":
       return (
-        <Question label="¿Cuál es tu objetivo?">
+        <Question label="¿Cuál es tu objetivo principal?">
           <RadioCards
             value={s.goal}
-            onChange={(v) => set((p) => ({ ...p, goal: v as Goal, kgRange: undefined }))}
+            onChange={(v) => set((p) => ({ ...p, goal: v as Goal }))}
             options={[
-              { value: "perder", label: "Perder peso" },
-              { value: "mantener", label: "Mantener mi peso y tonificar" },
-              { value: "ganar", label: "Ganar masa muscular" },
+              { value: "lose-1-10", label: "Perder peso (1 a 10 kg)" },
+              { value: "lose-10-plus", label: "Perder peso (más de 10 kg)" },
+              { value: "tone", label: "Tonificar mi cuerpo" },
+              { value: "fat-loss-muscle", label: "Perder grasa y ganar masa muscular" },
+              { value: "anti-inflammation", label: "Reducir la inflamación abdominal" },
             ]}
           />
         </Question>
       );
-    case "kg": {
-      const verb = s.goal === "perder" ? "perder" : "ganar";
+    case "weight":
       return (
-        <Question label={`¿Cuántos kilos quieres ${verb}?`}>
+        <Question label="¿Cuánto pesas actualmente?">
           <RadioCards
-            value={s.kgRange}
-            onChange={(v) => set((p) => ({ ...p, kgRange: v as KgRange }))}
+            value={s.weightRange}
+            onChange={(v) => set((p) => ({ ...p, weightRange: v as WeightRange }))}
             options={[
-              { value: "1-5", label: "1 a 5 kg" },
-              { value: "5-10", label: "5 a 10 kg" },
-              { value: "10-15", label: "10 a 15 kg" },
-              { value: "15+", label: "Más de 15 kg" },
+              { value: "lt-60", label: "Menos de 60 kg" },
+              { value: "60-70", label: "Entre 60 y 70 kg" },
+              { value: "70-80", label: "Entre 70 y 80 kg" },
+              { value: "gt-80", label: "Más de 80 kg" },
             ]}
           />
         </Question>
       );
-    }
+    case "age":
+      return (
+        <Question label="¿En qué franja de edad estás?">
+          <RadioCards
+            value={s.ageRange}
+            onChange={(v) => set((p) => ({ ...p, ageRange: v as AgeRange }))}
+            options={[
+              { value: "35-50", label: "35 a 50 años" },
+              { value: "50-60", label: "50 a 60 años" },
+              { value: "60-plus", label: "Más de 60 años" },
+            ]}
+          />
+        </Question>
+      );
     case "activity":
       return (
         <Question label="¿Cómo es tu día a día?">
@@ -237,7 +245,7 @@ function renderStep(
       );
     case "conditions":
       return (
-        <Question label="¿Tienes alguna condición o cambio que debamos tener en cuenta?" hint="Puedes marcar varias.">
+        <Question label="¿Tienes alguna condición a tener en cuenta?" hint="Puedes marcar varias.">
           <CheckboxCards
             value={s.conditions}
             onChange={(v) => set((p) => ({ ...p, conditions: v }))}
@@ -252,7 +260,7 @@ function renderStep(
       );
     case "obstacle":
       return (
-        <Question label="¿Cuál ha sido tu mayor obstáculo para conseguir tu objetivo?">
+        <Question label="¿Cuál ha sido tu mayor obstáculo?">
           <RadioCards
             value={s.obstacle}
             onChange={(v) => set((p) => ({ ...p, obstacle: v as Obstacle }))}
@@ -353,7 +361,7 @@ function RadioCards<T extends string>({ value, onChange, options }: {
             className={`w-full rounded-md border bg-card px-5 py-4 text-left text-base transition-all duration-[180ms] ${
               active
                 ? "border-primary border-[1.5px] bg-accent"
-                : "border-border hover:border-foreground"
+                : "border-border hover:border-primary/40"
             }`}
           >
             {o.label}
@@ -369,9 +377,7 @@ function CheckboxCards<T extends string>({ value, onChange, options }: {
 }) {
   const toggle = (v: T) => {
     if (v === ("none" as T)) {
-      // mutually exclusive
-      if (value.includes(v)) onChange([]);
-      else onChange([v]);
+      if (value.includes(v)) onChange([]); else onChange([v]);
       return;
     }
     const without = value.filter((x) => x !== ("none" as T));
@@ -391,7 +397,7 @@ function CheckboxCards<T extends string>({ value, onChange, options }: {
             className={`flex w-full items-center justify-between rounded-md border bg-card px-5 py-4 text-left text-base transition-all duration-[180ms] ${
               active
                 ? "border-primary border-[1.5px] bg-accent"
-                : "border-border hover:border-foreground"
+                : "border-border hover:border-primary/40"
             }`}
           >
             <span>{o.label}</span>
