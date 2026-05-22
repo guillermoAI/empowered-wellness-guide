@@ -2,12 +2,13 @@ import { Link } from "@tanstack/react-router";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-30 h-[72px] border-b border-border bg-background/90 backdrop-blur">
+    <header className="sticky top-0 z-30 h-[72px] border-b border-border bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
         <Link to="/" className="font-serif text-lg tracking-tight">NOMBRE STUDIO</Link>
-        <Link to="/" hash="sobre-mi" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-          Sobre mí
-        </Link>
+        <nav className="flex items-center gap-6 text-sm text-muted-foreground">
+          <Link to="/" hash="sobre-mi" className="transition-colors hover:text-foreground">Sobre mí</Link>
+          <Link to="/" hash="mis-chicas" className="transition-colors hover:text-foreground">Mis chicas</Link>
+        </nav>
       </div>
     </header>
   );
