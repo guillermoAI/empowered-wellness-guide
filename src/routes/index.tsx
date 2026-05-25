@@ -102,7 +102,7 @@ function MockupCard() {
           ))}
         </div>
         <div className="absolute bottom-6 left-8 right-8 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-          NOMBRE STUDIO · Plan personalizado
+          VIKYFIT · Plan personalizado
         </div>
       </div>
     </div>
@@ -135,18 +135,100 @@ function About() {
   );
 }
 
-const CHICAS = [
+type Chica = {
+  name: string;
+  age: number;
+  job: string;
+  kids: string;
+  identity: string;
+  story: string;
+  result: string;
+  tone: "rose" | "muted";
+};
+
+const CHICAS: Chica[] = [
   {
-    name: "Elena, 52",
-    goal: "Pérdida de grasa + masa muscular",
-    weeks: "16 semanas",
-    quote: "Por primera vez tengo un plan que entiende mi cuerpo a esta edad. La fuerza ha cambiado todo.",
+    name: "Natalia",
+    age: 38,
+    job: "Gerente comercial",
+    kids: "1 hija",
+    identity: "La que viajaba semanalmente y pensaba que no podía cuidarse.",
+    story:
+      "Por su trabajo viajaba cada semana y tenía eventos fuera constantemente. Entrenaba antes, pero llevaba tiempo parada.",
+    result:
+      "En 3 meses entrenando progresivamente, integrando hábitos saludables y una alimentación equilibrada a pesar de los eventos: desinflamación, bajada de volumen y de peso.",
+    tone: "rose",
   },
   {
-    name: "Marta, 47",
-    goal: "Reducir inflamación abdominal",
-    weeks: "10 semanas",
-    quote: "La hinchazón con la que llevaba años bajó en dos semanas. No sabía que se podía sentir tan ligera.",
+    name: "Cristina",
+    age: 54,
+    job: "Recepcionista / Administrativa",
+    kids: "2 hijos",
+    identity: "Se había dejado de cuidar y pensaba que ya era tarde para empezar.",
+    story:
+      "No entrenaba, no se alimentaba bien y llevaba una vida totalmente sedentaria. Tenía complejo con los brazos y se planteaba operarse.",
+    result:
+      "Perdió 12 kg en 5 meses entrenando desde casa, eliminó la barriga, mejoró su composición corporal al completo y recuperó energía, motivación y entusiasmo por la vida.",
+    tone: "muted",
+  },
+  {
+    name: "Montse",
+    age: 45,
+    job: "Arquitecta",
+    kids: "1 hijo",
+    identity: "Entrenaba sin resultados y se sentía estancada… hasta que entendió qué le faltaba.",
+    story:
+      "Entrenaba, pero sin rutina ni estructura. No veía cambios en su cuerpo y no entendía qué estaba fallando.",
+    result: "Perdió 4 kg en 3 meses y recompuso su cuerpo, viéndose más firme y definida.",
+    tone: "rose",
+  },
+  {
+    name: "Elena",
+    age: 47,
+    job: "Contable · perimenopausia",
+    kids: "1 hijo",
+    identity: "No se reconocía cuando se miraba al espejo… recuperó su cuerpo y su confianza.",
+    story:
+      "Veía cómo su cuerpo cambiaba con la perimenopausia: más flácida, más barriga y sin reconocerse. Pensaba que ya no tenía solución.",
+    result:
+      "Perdió 5,5 kg en 3 meses y volvió a sentirse firme, con vientre, brazos y glúteos tonificados.",
+    tone: "muted",
+  },
+  {
+    name: "Susana",
+    age: 51,
+    job: "Enfermera · premenopausia",
+    kids: "3 hijos",
+    identity: "No conseguía volver a su peso anterior y necesitaba un plan a su medida.",
+    story:
+      "Había cogido 5 kg en poco tiempo. Hacía clases dirigidas pero no veía resultados y quería ayuda personalizada.",
+    result:
+      "4 kg en 2 meses (y seguimos). Cintura de 85 a 79 cm, peso de 65 a 61 kg, entrenando fuerza 3 días a la semana adaptado a ella.",
+    tone: "rose",
+  },
+  {
+    name: "Raquel",
+    age: 48,
+    job: "Trabajadora en Mercadona",
+    kids: "2 hijas",
+    identity: "Dejó de obsesionarse con la báscula y cambió su cuerpo de verdad.",
+    story:
+      "Trabajo muy demandante, cansancio constante y poco margen para cuidarse. Sentía que hacía lo que podía, pero no veía cambios.",
+    result:
+      "Perdió 4 cm de cintura en 3 meses y transformó su cuerpo sin obsesionarse con la báscula.",
+    tone: "muted",
+  },
+  {
+    name: "Silvia",
+    age: 53,
+    job: "Limpiadora",
+    kids: "1 hija",
+    identity: "Pensaba que solo con comer bien era suficiente… y entendió lo que le faltaba.",
+    story:
+      "No hacía ejercicio, pero intentaba cuidar su alimentación. Aun así no veía cambios y pensaba que eso no era suficiente.",
+    result:
+      "Perdió 3 kg en 2 meses, redujo volumen y empezó a verse más firme, con más energía. Le vuelve a sentar bien la ropa que había dejado de ponerse.",
+    tone: "rose",
   },
 ];
 
@@ -164,47 +246,51 @@ function MisChicas() {
           <p className="mt-4 text-muted-foreground">Mujeres que empezaron donde estás tú ahora.</p>
         </motion.div>
 
-        <div className="mt-14 grid gap-10 lg:grid-cols-2">
+        <div className="mt-14 space-y-10">
           {CHICAS.map((c, i) => (
             <motion.article
               key={c.name}
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: easing, delay: i * 0.1 }}
-              className="overflow-hidden rounded-3xl border border-border bg-card"
+              transition={{ duration: 0.6, ease: easing, delay: (i % 3) * 0.08 }}
+              className="overflow-hidden rounded-3xl border border-border bg-card md:grid md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
             >
-              <div className="grid grid-cols-2">
-                <BeforeAfterPlaceholder label="Antes" tone="muted" />
-                <BeforeAfterPlaceholder label="Después" tone="rose" />
-              </div>
-              <div className="p-8">
+              <PhotoPlaceholder name={c.name} tone={c.tone} />
+              <div className="p-8 sm:p-10">
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <h3 className="font-serif text-2xl">{c.name}</h3>
-                  <span className="text-xs uppercase tracking-[0.2em] text-primary">{c.weeks}</span>
+                  <h3 className="font-serif text-2xl">{c.name}, {c.age}</h3>
+                  <span className="text-xs uppercase tracking-[0.2em] text-primary">{c.kids}</span>
                 </div>
-                <p className="mt-1 text-sm text-muted-foreground">{c.goal}</p>
-                <p className="mt-5 font-serif text-lg italic leading-relaxed">"{c.quote}"</p>
+                <p className="mt-1 text-sm text-muted-foreground">{c.job}</p>
+                <p className="mt-5 font-serif text-lg italic leading-relaxed">"{c.identity}"</p>
+                <div className="mt-6 space-y-3 text-sm leading-relaxed text-muted-foreground">
+                  <p><span className="font-medium uppercase tracking-wide text-[11px] text-foreground/80 mr-2">Antes</span>{c.story}</p>
+                  <p><span className="font-medium uppercase tracking-wide text-[11px] text-primary mr-2">Después</span>{c.result}</p>
+                </div>
               </div>
             </motion.article>
           ))}
         </div>
 
-        <p className="mt-8 text-center text-xs text-muted-foreground">
-          * Sustituye los marcos con las fotos reales de antes/después de cada chica.
+        <p className="mt-10 text-center text-xs text-muted-foreground">
+          * Sustituye cada marco con la foto real (antes/después combinados) de cada chica.
         </p>
       </div>
     </section>
   );
 }
 
-function BeforeAfterPlaceholder({ label, tone }: { label: string; tone: "muted" | "rose" }) {
+function PhotoPlaceholder({ name, tone }: { name: string; tone: "rose" | "muted" }) {
   const bg = tone === "rose"
     ? "bg-gradient-to-br from-secondary via-accent to-rose-tint"
-    : "bg-gradient-to-br from-muted via-background to-secondary/40";
+    : "bg-gradient-to-br from-muted via-background to-secondary/50";
   return (
-    <div className={`relative aspect-[3/4] ${bg}`}>
+    <div className={`relative aspect-[4/5] w-full md:aspect-auto md:min-h-full ${bg}`}>
       <div className="absolute left-4 top-4 rounded-full bg-background/85 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-foreground">
-        {label}
+        Antes · Después
+      </div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="font-serif text-xl text-foreground/30">{name}</span>
       </div>
     </div>
   );
