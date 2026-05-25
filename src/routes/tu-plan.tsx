@@ -173,7 +173,7 @@ function TuPlanPage() {
       </main>
 
       <footer className="border-t border-border py-12 text-center text-sm text-muted-foreground">
-        © 2026 NOMBRE STUDIO
+        © 2026 VIKYFIT
       </footer>
     </motion.div>
   );
