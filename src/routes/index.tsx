@@ -102,7 +102,7 @@ function MockupCard() {
           ))}
         </div>
         <div className="absolute bottom-6 left-8 right-8 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-          NOMBRE STUDIO · Plan personalizado
+          VIKYFIT · Plan personalizado
         </div>
       </div>
     </div>
