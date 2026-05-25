@@ -32,7 +32,7 @@ function TuPlanPage() {
     >
       <header className="border-b border-border">
         <div className="mx-auto flex h-[72px] max-w-4xl items-center justify-between px-6">
-          <Link to="/" className="font-serif text-lg">NOMBRE STUDIO</Link>
+          <Link to="/" className="font-serif text-lg">VIKYFIT</Link>
           <button
             onClick={downloadPdf}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2 text-sm font-medium transition-all hover:border-foreground"
