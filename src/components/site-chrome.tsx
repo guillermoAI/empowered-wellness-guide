@@ -18,7 +18,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border py-12 text-center text-sm text-muted-foreground">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-6 sm:flex-row sm:justify-between">
-        <span>© 2026 NOMBRE STUDIO</span>
+        <span>© 2026 VIKYFIT</span>
         <div className="flex gap-6">
           <a href="#" className="hover:text-foreground">Política de privacidad</a>
           <a href="#" className="hover:text-foreground">Términos</a>
