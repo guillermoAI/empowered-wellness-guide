@@ -276,7 +276,7 @@ function buildPdf(answers: FormAnswers, plan: ReturnType<typeof generatePlan>) {
   // Footer
   doc.setFontSize(9);
   doc.setTextColor(150, 150, 150);
-  doc.text("NOMBRE STUDIO · Plan personalizado", M, H - 30);
+  doc.text("VIKYFIT · Plan personalizado", M, H - 30);
 
   doc.save(`plan-${answers.name.toLowerCase().replace(/\s+/g, "-")}.pdf`);
 }
