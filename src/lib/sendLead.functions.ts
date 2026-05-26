@@ -67,7 +67,7 @@ export const sendLead = createServerFn({ method: "POST" })
         kg_range: meta,
         daily_activity: data.dailyActivity,
         training: data.training,
-        conditions: data.conditions,
+        conditions: [],
         obstacle: data.obstacle,
       })
       .select()
