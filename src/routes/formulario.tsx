@@ -173,7 +173,7 @@ function renderStep(
             value={s.goal}
             onChange={(v) => set((p) => ({ ...p, goal: v as Goal }))}
             options={[
-              { value: "lose-1-10", label: "Perder peso (1 a 10 kg)" },
+              { value: "lose-1-10", label: "Perder peso (3-10 kg)" },
               { value: "lose-10-plus", label: "Perder peso (más de 10 kg)" },
               { value: "tone", label: "Tonificar mi cuerpo" },
               { value: "fat-loss-muscle", label: "Perder grasa y ganar masa muscular" },
