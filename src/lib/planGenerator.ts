@@ -204,9 +204,9 @@ function buildShopping(a: FormAnswers): ShoppingSection[] {
 // ───────── MEALS ─────────
 function buildMeals(a: FormAnswers): MealDay {
   const p = PORTIONS_BY_WEIGHT[a.weightRange];
-  const hasMetabolic = a.conditions.includes("metabolic");
-  const hasMeno = a.conditions.includes("menopause");
-  const hasJoints = a.conditions.includes("joints");
+  const hasMetabolic = false;
+  const hasMeno = a.ageRange !== "35-50";
+  const hasJoints = false;
   const isAntiInflam = a.goal === "anti-inflammation";
   const isRecomp = a.goal === "fat-loss-muscle";
   const isTone = a.goal === "tone";
