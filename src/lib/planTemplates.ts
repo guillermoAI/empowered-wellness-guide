@@ -142,6 +142,15 @@ export const OBSTACLE_SECTIONS: Record<string, ObstacleSection> = {
       "Paciencia: cambios más lentos pero más sostenibles. Mide en meses, no en semanas.",
     ],
   },
+  "no-start": {
+    title: "Tu plan para arrancar desde cero",
+    actions: [
+      "Paso 1: elige 3 días fijos esta semana para entrenar. Bloquea en agenda.",
+      "Paso 2: haz la compra una sola vez con la lista de este plan.",
+      "Paso 3: replica el día de comidas tal cual durante 5 días, sin pensar.",
+      "Paso 4: la semana que viene, ajustamos. Primero estructura, luego matices.",
+    ],
+  },
 };
 
 // ───────── Lista de la compra base ─────────
