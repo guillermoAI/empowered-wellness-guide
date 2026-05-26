@@ -6,10 +6,9 @@ import {
 export type Goal = "lose-1-10" | "lose-10-plus" | "tone" | "fat-loss-muscle" | "anti-inflammation";
 export type WeightRange = "lt-60" | "60-70" | "70-80" | "gt-80";
 export type AgeRange = "35-50" | "50-60" | "60-plus";
-export type Activity = "sit-less-8" | "sit-more-8" | "active" | "no-work";
-export type Training = "2-3-home" | "2-3-gym" | "4-5-home" | "4-5-gym";
-export type Condition = "menopause" | "joints" | "metabolic" | "none";
-export type Obstacle = "no-time" | "dont-know-what" | "snacking" | "consistency" | "no-response";
+export type Activity = "low" | "active" | "very-active";
+export type Training = "2-3-home" | "2-3-gym" | "3-4-home" | "3-4-gym";
+export type Obstacle = "no-time" | "dont-know-what" | "snacking" | "consistency" | "no-response" | "no-start";
 
 export type FormAnswers = {
   name: string;
@@ -20,7 +19,6 @@ export type FormAnswers = {
   ageRange: AgeRange;
   dailyActivity: Activity;
   training: Training;
-  conditions: Condition[];
   obstacle: Obstacle;
 };
 
