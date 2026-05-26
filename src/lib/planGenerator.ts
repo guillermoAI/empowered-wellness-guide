@@ -6,10 +6,9 @@ import {
 export type Goal = "lose-1-10" | "lose-10-plus" | "tone" | "fat-loss-muscle" | "anti-inflammation";
 export type WeightRange = "lt-60" | "60-70" | "70-80" | "gt-80";
 export type AgeRange = "35-50" | "50-60" | "60-plus";
-export type Activity = "sit-less-8" | "sit-more-8" | "active" | "no-work";
-export type Training = "2-3-home" | "2-3-gym" | "4-5-home" | "4-5-gym";
-export type Condition = "menopause" | "joints" | "metabolic" | "none";
-export type Obstacle = "no-time" | "dont-know-what" | "snacking" | "consistency" | "no-response";
+export type Activity = "low" | "active" | "very-active";
+export type Training = "2-3-home" | "2-3-gym" | "3-4-home" | "3-4-gym";
+export type Obstacle = "no-time" | "dont-know-what" | "snacking" | "consistency" | "no-response" | "no-start";
 
 export type FormAnswers = {
   name: string;
@@ -20,7 +19,6 @@ export type FormAnswers = {
   ageRange: AgeRange;
   dailyActivity: Activity;
   training: Training;
-  conditions: Condition[];
   obstacle: Obstacle;
 };
 
@@ -50,10 +48,10 @@ function buildStrategy(a: FormAnswers) {
 // 4 training plans × home/gym × +60 adaptation
 function buildWorkout(a: FormAnswers): WorkoutDay {
   const isGym = a.training.endsWith("gym");
-  const isHighFreq = a.training.startsWith("4-5");
+  const isHighFreq = a.training.startsWith("3-4");
   const isPlus60 = a.ageRange === "60-plus";
-  const hasJoints = a.conditions.includes("joints");
-  const hasMeno = a.conditions.includes("menopause");
+  const hasJoints = false;
+  const hasMeno = a.ageRange !== "35-50";
 
   // Map goal → training plan
   let planType: "loss" | "tone" | "recomp" | "anti-inflam";
@@ -170,10 +168,6 @@ function buildWorkout(a: FormAnswers): WorkoutDay {
     notes.push("Sin saltos. Reduce el rango si algún movimiento te molesta.");
     notes.push("Añade 5 minutos extra de movilidad al final.");
   }
-  if (a.conditions.includes("metabolic")) {
-    notes.push("Caminata de 10-15 min después de las comidas principales (hábito diario, no parte del workout).");
-    notes.push("Intenta entrenar siempre en un horario similar.");
-  }
   if (planType === "anti-inflam") {
     notes.push("Foco en Zone 2 (puedes mantener una conversación). Nada de cardio de alta intensidad esta semana.");
   }
@@ -204,24 +198,15 @@ function buildShopping(a: FormAnswers): ShoppingSection[] {
     list[4].items = list[4].items.filter((i) => !/pan/i.test(i.name));
   }
 
-  if (a.conditions.includes("metabolic")) {
-    list[2].note = "Consume las frutas preferentemente enteras, nunca en zumo.";
-  }
-  if (a.conditions.includes("menopause")) {
-    list[0].note = (list[0].note ? list[0].note + " " : "") + "Las legumbres, lino y soja contienen fitoestrógenos suaves que pueden ayudar en esta etapa.";
-  }
-  if (a.conditions.includes("joints")) {
-    list[0].note = (list[0].note ? list[0].note + " " : "") + "Pescado azul 3 veces por semana por sus omega-3 antiinflamatorios.";
-  }
   return list;
 }
 
 // ───────── MEALS ─────────
 function buildMeals(a: FormAnswers): MealDay {
   const p = PORTIONS_BY_WEIGHT[a.weightRange];
-  const hasMetabolic = a.conditions.includes("metabolic");
-  const hasMeno = a.conditions.includes("menopause");
-  const hasJoints = a.conditions.includes("joints");
+  const hasMetabolic = false;
+  const hasMeno = a.ageRange !== "35-50";
+  const hasJoints = false;
   const isAntiInflam = a.goal === "anti-inflammation";
   const isRecomp = a.goal === "fat-loss-muscle";
   const isTone = a.goal === "tone";

@@ -123,11 +123,11 @@ function About() {
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7, ease: easing, delay: 0.1 }}
         >
           <div className="text-xs font-medium uppercase tracking-[0.22em] text-primary">Sobre mí</div>
-          <h2 className="mt-4 font-serif text-3xl sm:text-4xl">Especializada en mujeres a partir de los 40</h2>
+          <h2 className="mt-4 font-serif text-3xl sm:text-4xl">Entrenadora personal especializada en mujeres</h2>
           <div className="mt-6 space-y-4 text-muted-foreground">
-            <p>Acompaño a mujeres a recuperar su energía, su fuerza y su relación con el cuerpo en una etapa donde lo de siempre deja de funcionar.</p>
-            <p>Especialista en nutrición clínica y entrenamiento de fuerza para mujeres en peri y menopausia. Trabajo desde el equilibrio hormonal, no contra él.</p>
-            <p>Este plan que te llevas hoy es una versión condensada de lo que diseño en consulta — para que pruebes el enfoque y veas si tiene sentido para ti.</p>
+            <p>El deporte ha formado parte de mi vida desde siempre. Con apenas 16 años, mientras estudiaba, ya era instructora de aerobic y tonificación, y desde entonces, ayudar a mujeres a sentirse mejor con su cuerpo y salud ha sido mi vocación.</p>
+            <p>Años después, esa pasión se convirtió en especialización. Soy entrenadora personal acreditada oficialmente e inscrita en el ROPEC, con certificación en nutrición y especializada en perimenopausia y menopausia.</p>
+            <p>Mi misión es acompañarte y ayudarte a recuperar el control: de tu energía, de tu composición corporal y de tu bienestar. Sin dietas extremas. Sin entrenamientos imposibles. Con hábitos que puedas mantener en el tiempo y que de verdad transformen cómo te sientes y cómo te ves.</p>
           </div>
         </motion.div>
       </div>

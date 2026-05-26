@@ -6,14 +6,14 @@ import { z } from "zod";
 import { useServerFn } from "@tanstack/react-start";
 import { sendLead } from "@/lib/sendLead.functions";
 import type {
-  FormAnswers, Goal, WeightRange, AgeRange, Activity, Training, Condition, Obstacle,
+  FormAnswers, Goal, WeightRange, AgeRange, Activity, Training, Obstacle,
 } from "@/lib/planGenerator";
 
 export const Route = createFileRoute("/formulario")({ component: FormularioPage });
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
-type State = Partial<FormAnswers> & { conditions: Condition[] };
+type State = Partial<FormAnswers>;
 
 const emailSchema = z.string().email("Introduce un email válido");
 const phoneSchema = z.string().min(6, "Introduce un teléfono válido").regex(/^[+0-9\s\-()]+$/, "Solo números y +");
@@ -22,14 +22,14 @@ function FormularioPage() {
   const navigate = useNavigate();
   const submit = useServerFn(sendLead);
 
-  const [state, setState] = useState<State>({ conditions: [] });
+  const [state, setState] = useState<State>({});
   const [stepIdx, setStepIdx] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const steps: string[] = useMemo(
-    () => ["name", "goal", "weight", "age", "activity", "training", "conditions", "obstacle", "email", "phone"],
+    () => ["name", "age", "weight", "goal", "activity", "training", "obstacle", "email", "phone"],
     [],
   );
 
@@ -45,7 +45,6 @@ function FormularioPage() {
       case "age": return !!state.ageRange;
       case "activity": return !!state.dailyActivity;
       case "training": return !!state.training;
-      case "conditions": return state.conditions.length > 0;
       case "obstacle": return !!state.obstacle;
       case "email": return !!state.email && emailSchema.safeParse(state.email).success;
       case "phone": return !!state.phone && phoneSchema.safeParse(state.phone).success;
@@ -68,7 +67,6 @@ function FormularioPage() {
           ageRange: state.ageRange!,
           dailyActivity: state.dailyActivity!,
           training: state.training!,
-          conditions: state.conditions,
           obstacle: state.obstacle!,
         };
         await submit({ data: payload });
@@ -175,7 +173,7 @@ function renderStep(
             value={s.goal}
             onChange={(v) => set((p) => ({ ...p, goal: v as Goal }))}
             options={[
-              { value: "lose-1-10", label: "Perder peso (1 a 10 kg)" },
+              { value: "lose-1-10", label: "Perder peso (3-10 kg)" },
               { value: "lose-10-plus", label: "Perder peso (más de 10 kg)" },
               { value: "tone", label: "Tonificar mi cuerpo" },
               { value: "fat-loss-muscle", label: "Perder grasa y ganar masa muscular" },
@@ -220,10 +218,9 @@ function renderStep(
             value={s.dailyActivity}
             onChange={(v) => set((p) => ({ ...p, dailyActivity: v as Activity }))}
             options={[
-              { value: "sit-less-8", label: "Trabajo sentada menos de 8h" },
-              { value: "sit-more-8", label: "Trabajo sentada más de 8h" },
-              { value: "active", label: "Trabajo activo (de pie, caminando, físico)" },
-              { value: "no-work", label: "No trabajo fuera de casa actualmente" },
+              { value: "low", label: "Poco activo — sedentario" },
+              { value: "active", label: "Activo — de pie" },
+              { value: "very-active", label: "Muy activo" },
             ]}
           />
         </Question>
@@ -237,23 +234,8 @@ function renderStep(
             options={[
               { value: "2-3-home", label: "2 a 3 días en casa" },
               { value: "2-3-gym", label: "2 a 3 días en gimnasio" },
-              { value: "4-5-home", label: "4 a 5 días en casa" },
-              { value: "4-5-gym", label: "4 a 5 días en gimnasio" },
-            ]}
-          />
-        </Question>
-      );
-    case "conditions":
-      return (
-        <Question label="¿Tienes alguna condición a tener en cuenta?" hint="Puedes marcar varias.">
-          <CheckboxCards
-            value={s.conditions}
-            onChange={(v) => set((p) => ({ ...p, conditions: v }))}
-            options={[
-              { value: "menopause", label: "Perimenopausia o menopausia" },
-              { value: "joints", label: "Problemas de rodillas, espalda o articulaciones" },
-              { value: "metabolic", label: "Tiroides, diabetes o resistencia a la insulina" },
-              { value: "none", label: "Ninguna de las anteriores" },
+              { value: "3-4-home", label: "3 a 4 días en casa" },
+              { value: "3-4-gym", label: "3 a 4 días en gimnasio" },
             ]}
           />
         </Question>
@@ -270,6 +252,7 @@ function renderStep(
               { value: "snacking", label: "Pico entre horas o como por ansiedad" },
               { value: "consistency", label: "Empiezo motivada pero no soy constante" },
               { value: "no-response", label: "Mi cuerpo ya no responde como antes" },
+              { value: "no-start", label: "No sé por dónde empezar" },
             ]}
           />
         </Question>

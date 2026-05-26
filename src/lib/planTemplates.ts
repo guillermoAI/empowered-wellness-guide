@@ -47,10 +47,9 @@ export const STRATEGY_TEXTS: Record<string, string> = {
 };
 
 export const ACTIVITY_NOTES: Record<string, string | null> = {
-  "sit-more-8": "Tu día es sedentario, así que vamos a integrar movimiento fuera del entrenamiento: caminar después de comer, levantarse cada hora.",
-  "active":     "Tu día ya tiene mucho movimiento natural. Esto trabaja a tu favor.",
-  "sit-less-8": null,
-  "no-work":    null,
+  "low":         "Tu día es bastante sedentario, así que vamos a integrar movimiento fuera del entrenamiento: caminar después de comer, levantarse cada hora.",
+  "active":      "Tu día ya tiene movimiento natural de pie. Esto trabaja a tu favor.",
+  "very-active": "Tu día es muy activo: cuidaremos la recuperación y la fuerza para que ese movimiento te sume sin desgastarte.",
 };
 
 // ───────── Intro mensajes: 5 goals × 5 obstacles ─────────
@@ -61,6 +60,7 @@ export const INTRO_MESSAGES: Record<string, Record<string, string>> = {
     "snacking":       "El picoteo no es debilidad: es comida que no sacia. Lo arreglamos con proteína en cada plato.",
     "consistency":    "No te falta motivación, te falta un sistema sencillo. Tu plan está hecho para días buenos y días regulares.",
     "no-response":    "Tu cuerpo no está roto: pide otro estímulo. Fuerza, proteína suficiente y paciencia.",
+    "no-start":       "No saber por dónde empezar es lo más común. Aquí tienes el primer paso claro y abordable.",
   },
   "lose-10-plus": {
     "no-time":        "Perder peso real con poco tiempo se basa en estructura, no en horas. Aquí tienes la estructura.",
@@ -68,6 +68,7 @@ export const INTRO_MESSAGES: Record<string, Record<string, string>> = {
     "snacking":       "Con este objetivo, controlar el picoteo es prioridad. Vamos a crear entornos y comidas que sacien de verdad.",
     "consistency":    "Este plan se diseña por bloques: tu trabajo es solo seguir esta semana. Una a la vez.",
     "no-response":    "Lo que antes te funcionó ya no lo hace. Cambiamos la estrategia: fuerza, proteína y paciencia con el proceso.",
+    "no-start":       "Cuando hay mucho que cambiar, lo crítico es el primer paso. Aquí lo tienes ordenado.",
   },
   "tone": {
     "no-time":        "Tonificar no necesita horas de gimnasio. Necesita intensidad bien dirigida 2-3 veces por semana.",
@@ -75,6 +76,7 @@ export const INTRO_MESSAGES: Record<string, Record<string, string>> = {
     "snacking":       "Si tu peso está bien, el picoteo es energía mal canalizada. Lo redirigimos a comidas reales.",
     "consistency":    "El músculo se construye semana a semana. No necesitas perfección, necesitas presencia.",
     "no-response":    "Si tu cuerpo dejó de cambiar, es momento de cambiar el estímulo: fuerza pesada, descanso real.",
+    "no-start":       "Tonificar empieza por entender qué es fuerza bien hecha. Aquí va tu primer entrenamiento.",
   },
   "fat-loss-muscle": {
     "no-time":        "Recomponer cuerpo no es cuestión de horas, es de prioridad: fuerza pesada y comer suficiente proteína.",
@@ -82,6 +84,7 @@ export const INTRO_MESSAGES: Record<string, Record<string, string>> = {
     "snacking":       "Aquí el picoteo no es enemigo si va con proteína. Lo redirigimos a aliado.",
     "consistency":    "La recomposición es el camino lento pero permanente. Cada semana cuenta.",
     "no-response":    "Si nada cambia, probablemente comes menos de lo que crees y entrenas con menos intensidad de la necesaria.",
+    "no-start":       "Empezar por fuerza + proteína suficiente es el camino más corto. Aquí está el plan.",
   },
   "anti-inflammation": {
     "no-time":        "Reducir la inflamación pasa por simplificar lo que comes, no por añadir suplementos. Es más fácil de lo que parece.",
@@ -89,6 +92,7 @@ export const INTRO_MESSAGES: Record<string, Record<string, string>> = {
     "snacking":       "El picoteo de ultraprocesados es la causa más común de inflamación crónica. Vamos a reordenarlo.",
     "consistency":    "Notarás los cambios en 2 semanas si eres constante. Eso suele ser el motor que necesitas.",
     "no-response":    "La inflamación crónica es la causa silenciosa de que tu cuerpo no responda. Atacamos la raíz.",
+    "no-start":       "Empezamos por simplificar: quitar lo que inflama y añadir lo que desinflama. Por aquí.",
   },
 };
 
@@ -136,6 +140,15 @@ export const OBSTACLE_SECTIONS: Record<string, ObstacleSection> = {
       "Tu cuerpo no está roto: pide otro tipo de estímulo.",
       "Probablemente necesites comer más, no menos. Subir el metabolismo antes de bajar calorías.",
       "Paciencia: cambios más lentos pero más sostenibles. Mide en meses, no en semanas.",
+    ],
+  },
+  "no-start": {
+    title: "Tu plan para arrancar desde cero",
+    actions: [
+      "Paso 1: elige 3 días fijos esta semana para entrenar. Bloquea en agenda.",
+      "Paso 2: haz la compra una sola vez con la lista de este plan.",
+      "Paso 3: replica el día de comidas tal cual durante 5 días, sin pensar.",
+      "Paso 4: la semana que viene, ajustamos. Primero estructura, luego matices.",
     ],
   },
 };
