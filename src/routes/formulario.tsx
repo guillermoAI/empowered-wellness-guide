@@ -234,8 +234,8 @@ function renderStep(
             options={[
               { value: "2-3-home", label: "2 a 3 días en casa" },
               { value: "2-3-gym", label: "2 a 3 días en gimnasio" },
-              { value: "4-5-home", label: "4 a 5 días en casa" },
-              { value: "4-5-gym", label: "4 a 5 días en gimnasio" },
+              { value: "3-4-home", label: "3 a 4 días en casa" },
+              { value: "3-4-gym", label: "3 a 4 días en gimnasio" },
             ]}
           />
         </Question>
