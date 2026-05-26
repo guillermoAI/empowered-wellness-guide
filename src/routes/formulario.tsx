@@ -22,14 +22,14 @@ function FormularioPage() {
   const navigate = useNavigate();
   const submit = useServerFn(sendLead);
 
-  const [state, setState] = useState<State>({ conditions: [] });
+  const [state, setState] = useState<State>({});
   const [stepIdx, setStepIdx] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const steps: string[] = useMemo(
-    () => ["name", "goal", "weight", "age", "activity", "training", "conditions", "obstacle", "email", "phone"],
+    () => ["name", "age", "weight", "goal", "activity", "training", "obstacle", "email", "phone"],
     [],
   );
 
