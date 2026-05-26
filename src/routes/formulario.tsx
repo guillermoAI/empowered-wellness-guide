@@ -6,14 +6,14 @@ import { z } from "zod";
 import { useServerFn } from "@tanstack/react-start";
 import { sendLead } from "@/lib/sendLead.functions";
 import type {
-  FormAnswers, Goal, WeightRange, AgeRange, Activity, Training, Condition, Obstacle,
+  FormAnswers, Goal, WeightRange, AgeRange, Activity, Training, Obstacle,
 } from "@/lib/planGenerator";
 
 export const Route = createFileRoute("/formulario")({ component: FormularioPage });
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
-type State = Partial<FormAnswers> & { conditions: Condition[] };
+type State = Partial<FormAnswers>;
 
 const emailSchema = z.string().email("Introduce un email válido");
 const phoneSchema = z.string().min(6, "Introduce un teléfono válido").regex(/^[+0-9\s\-()]+$/, "Solo números y +");
