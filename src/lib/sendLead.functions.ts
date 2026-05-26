@@ -82,7 +82,6 @@ export const sendLead = createServerFn({ method: "POST" })
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
     if (token && chatId) {
-      const conditionsList = data.conditions.map((c) => CONDITIONS_LABEL[c]).join(", ");
       const message =
         `<b>🌸 Nuevo lead — ${data.name}</b>\n\n` +
         `📧 ${data.email}\n📱 ${data.phone}\n\n` +
@@ -92,7 +91,6 @@ export const sendLead = createServerFn({ method: "POST" })
         `Edad: ${AGE_LABEL[data.ageRange]}\n` +
         `Día a día: ${ACTIVITY_LABEL[data.dailyActivity]}\n` +
         `Entrenamiento: ${TRAINING_LABEL[data.training]}\n` +
-        `Condiciones: ${conditionsList}\n` +
         `Obstáculo: ${OBSTACLE_LABEL[data.obstacle]}\n\n` +
         `🕒 ${new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })}`;
 
