@@ -60,6 +60,7 @@ export const INTRO_MESSAGES: Record<string, Record<string, string>> = {
     "snacking":       "El picoteo no es debilidad: es comida que no sacia. Lo arreglamos con proteína en cada plato.",
     "consistency":    "No te falta motivación, te falta un sistema sencillo. Tu plan está hecho para días buenos y días regulares.",
     "no-response":    "Tu cuerpo no está roto: pide otro estímulo. Fuerza, proteína suficiente y paciencia.",
+    "no-start":       "No saber por dónde empezar es lo más común. Aquí tienes el primer paso claro y abordable.",
   },
   "lose-10-plus": {
     "no-time":        "Perder peso real con poco tiempo se basa en estructura, no en horas. Aquí tienes la estructura.",
