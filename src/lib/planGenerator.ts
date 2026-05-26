@@ -168,10 +168,6 @@ function buildWorkout(a: FormAnswers): WorkoutDay {
     notes.push("Sin saltos. Reduce el rango si algún movimiento te molesta.");
     notes.push("Añade 5 minutos extra de movilidad al final.");
   }
-  if (a.conditions.includes("metabolic")) {
-    notes.push("Caminata de 10-15 min después de las comidas principales (hábito diario, no parte del workout).");
-    notes.push("Intenta entrenar siempre en un horario similar.");
-  }
   if (planType === "anti-inflam") {
     notes.push("Foco en Zone 2 (puedes mantener una conversación). Nada de cardio de alta intensidad esta semana.");
   }
