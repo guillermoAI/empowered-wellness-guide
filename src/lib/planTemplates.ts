@@ -47,10 +47,9 @@ export const STRATEGY_TEXTS: Record<string, string> = {
 };
 
 export const ACTIVITY_NOTES: Record<string, string | null> = {
-  "sit-more-8": "Tu día es sedentario, así que vamos a integrar movimiento fuera del entrenamiento: caminar después de comer, levantarse cada hora.",
-  "active":     "Tu día ya tiene mucho movimiento natural. Esto trabaja a tu favor.",
-  "sit-less-8": null,
-  "no-work":    null,
+  "low":         "Tu día es bastante sedentario, así que vamos a integrar movimiento fuera del entrenamiento: caminar después de comer, levantarse cada hora.",
+  "active":      "Tu día ya tiene movimiento natural de pie. Esto trabaja a tu favor.",
+  "very-active": "Tu día es muy activo: cuidaremos la recuperación y la fuerza para que ese movimiento te sume sin desgastarte.",
 };
 
 // ───────── Intro mensajes: 5 goals × 5 obstacles ─────────
