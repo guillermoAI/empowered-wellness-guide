@@ -48,10 +48,10 @@ function buildStrategy(a: FormAnswers) {
 // 4 training plans × home/gym × +60 adaptation
 function buildWorkout(a: FormAnswers): WorkoutDay {
   const isGym = a.training.endsWith("gym");
-  const isHighFreq = a.training.startsWith("4-5");
+  const isHighFreq = a.training.startsWith("3-4");
   const isPlus60 = a.ageRange === "60-plus";
-  const hasJoints = a.conditions.includes("joints");
-  const hasMeno = a.conditions.includes("menopause");
+  const hasJoints = false;
+  const hasMeno = a.ageRange !== "35-50";
 
   // Map goal → training plan
   let planType: "loss" | "tone" | "recomp" | "anti-inflam";
