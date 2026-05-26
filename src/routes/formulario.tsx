@@ -218,10 +218,9 @@ function renderStep(
             value={s.dailyActivity}
             onChange={(v) => set((p) => ({ ...p, dailyActivity: v as Activity }))}
             options={[
-              { value: "sit-less-8", label: "Trabajo sentada menos de 8h" },
-              { value: "sit-more-8", label: "Trabajo sentada más de 8h" },
-              { value: "active", label: "Trabajo activo (de pie, caminando, físico)" },
-              { value: "no-work", label: "No trabajo fuera de casa actualmente" },
+              { value: "low", label: "Poco activo — sedentario" },
+              { value: "active", label: "Activo — de pie" },
+              { value: "very-active", label: "Muy activo" },
             ]}
           />
         </Question>
