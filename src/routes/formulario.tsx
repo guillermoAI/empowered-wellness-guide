@@ -45,7 +45,6 @@ function FormularioPage() {
       case "age": return !!state.ageRange;
       case "activity": return !!state.dailyActivity;
       case "training": return !!state.training;
-      case "conditions": return state.conditions.length > 0;
       case "obstacle": return !!state.obstacle;
       case "email": return !!state.email && emailSchema.safeParse(state.email).success;
       case "phone": return !!state.phone && phoneSchema.safeParse(state.phone).success;
