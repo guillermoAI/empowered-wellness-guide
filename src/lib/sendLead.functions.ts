@@ -3,7 +3,7 @@ import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 const GOAL_LABEL: Record<string, string> = {
-  "lose-1-10": "Pérdida de peso (1-10 kg)",
+  "lose-1-10": "Pérdida de peso (3-10 kg)",
   "lose-10-plus": "Pérdida de peso (10+ kg)",
   "tone": "Tonificar",
   "fat-loss-muscle": "Pérdida grasa + masa muscular",
@@ -21,22 +21,15 @@ const AGE_LABEL: Record<string, string> = {
   "60-plus": "60+ años",
 };
 const ACTIVITY_LABEL: Record<string, string> = {
-  "sit-less-8": "Sentada <8h",
-  "sit-more-8": "Sentada >8h",
-  active: "Trabajo activo",
-  "no-work": "No trabaja fuera",
+  "low": "Poco activo / sedentario",
+  "active": "Activo / de pie",
+  "very-active": "Muy activo",
 };
 const TRAINING_LABEL: Record<string, string> = {
   "2-3-home": "2-3 días en casa",
   "2-3-gym": "2-3 días en gimnasio",
-  "4-5-home": "4-5 días en casa",
-  "4-5-gym": "4-5 días en gimnasio",
-};
-const CONDITIONS_LABEL: Record<string, string> = {
-  menopause: "Peri/menopausia",
-  joints: "Articulaciones",
-  metabolic: "Tiroides/diabetes/RI",
-  none: "Ninguna",
+  "3-4-home": "3-4 días en casa",
+  "3-4-gym": "3-4 días en gimnasio",
 };
 const OBSTACLE_LABEL: Record<string, string> = {
   "no-time": "No tiene tiempo",
@@ -44,6 +37,7 @@ const OBSTACLE_LABEL: Record<string, string> = {
   snacking: "Picoteo/ansiedad",
   consistency: "Falta de constancia",
   "no-response": "Cuerpo no responde",
+  "no-start": "No sabe por dónde empezar",
 };
 
 const LeadSchema = z.object({
@@ -53,10 +47,9 @@ const LeadSchema = z.object({
   goal: z.enum(["lose-1-10", "lose-10-plus", "tone", "fat-loss-muscle", "anti-inflammation"]),
   weightRange: z.enum(["lt-60", "60-70", "70-80", "gt-80"]),
   ageRange: z.enum(["35-50", "50-60", "60-plus"]),
-  dailyActivity: z.enum(["sit-less-8", "sit-more-8", "active", "no-work"]),
-  training: z.enum(["2-3-home", "2-3-gym", "4-5-home", "4-5-gym"]),
-  conditions: z.array(z.enum(["menopause", "joints", "metabolic", "none"])).min(1).max(4),
-  obstacle: z.enum(["no-time", "dont-know-what", "snacking", "consistency", "no-response"]),
+  dailyActivity: z.enum(["low", "active", "very-active"]),
+  training: z.enum(["2-3-home", "2-3-gym", "3-4-home", "3-4-gym"]),
+  obstacle: z.enum(["no-time", "dont-know-what", "snacking", "consistency", "no-response", "no-start"]),
 });
 
 export const sendLead = createServerFn({ method: "POST" })
