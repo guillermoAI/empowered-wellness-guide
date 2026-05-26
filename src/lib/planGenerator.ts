@@ -198,15 +198,6 @@ function buildShopping(a: FormAnswers): ShoppingSection[] {
     list[4].items = list[4].items.filter((i) => !/pan/i.test(i.name));
   }
 
-  if (a.conditions.includes("metabolic")) {
-    list[2].note = "Consume las frutas preferentemente enteras, nunca en zumo.";
-  }
-  if (a.conditions.includes("menopause")) {
-    list[0].note = (list[0].note ? list[0].note + " " : "") + "Las legumbres, lino y soja contienen fitoestrógenos suaves que pueden ayudar en esta etapa.";
-  }
-  if (a.conditions.includes("joints")) {
-    list[0].note = (list[0].note ? list[0].note + " " : "") + "Pescado azul 3 veces por semana por sus omega-3 antiinflamatorios.";
-  }
   return list;
 }
 
