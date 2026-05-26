@@ -67,7 +67,6 @@ function FormularioPage() {
           ageRange: state.ageRange!,
           dailyActivity: state.dailyActivity!,
           training: state.training!,
-          conditions: state.conditions,
           obstacle: state.obstacle!,
         };
         await submit({ data: payload });
