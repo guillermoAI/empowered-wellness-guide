@@ -240,21 +240,6 @@ function renderStep(
           />
         </Question>
       );
-    case "conditions":
-      return (
-        <Question label="¿Tienes alguna condición a tener en cuenta?" hint="Puedes marcar varias.">
-          <CheckboxCards
-            value={s.conditions}
-            onChange={(v) => set((p) => ({ ...p, conditions: v }))}
-            options={[
-              { value: "menopause", label: "Perimenopausia o menopausia" },
-              { value: "joints", label: "Problemas de rodillas, espalda o articulaciones" },
-              { value: "metabolic", label: "Tiroides, diabetes o resistencia a la insulina" },
-              { value: "none", label: "Ninguna de las anteriores" },
-            ]}
-          />
-        </Question>
-      );
     case "obstacle":
       return (
         <Question label="¿Cuál ha sido tu mayor obstáculo?">
@@ -267,6 +252,7 @@ function renderStep(
               { value: "snacking", label: "Pico entre horas o como por ansiedad" },
               { value: "consistency", label: "Empiezo motivada pero no soy constante" },
               { value: "no-response", label: "Mi cuerpo ya no responde como antes" },
+              { value: "no-start", label: "No sé por dónde empezar" },
             ]}
           />
         </Question>
