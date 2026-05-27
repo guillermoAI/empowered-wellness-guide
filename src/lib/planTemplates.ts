@@ -15,31 +15,26 @@ export type ObstacleSection = { title: string; actions: string[] };
 
 // ───────── Strategy texts: 5 goals × 4 weight ranges ─────────
 export const STRATEGY_TEXTS: Record<string, string> = {
-  // PLAN 1 — Pérdida de peso (1 a 10 kg)
   "lose-1-10|lt-60":  "Déficit calórico suave. Tu cuerpo no necesita un cambio agresivo, solo constancia. Estimado: 6-10 semanas.",
   "lose-1-10|60-70":  "Déficit moderado con foco en proteína para preservar masa muscular. Estimado: 8-12 semanas.",
   "lose-1-10|70-80":  "Déficit estructurado con énfasis en saciedad y fuerza. Estimado: 10-14 semanas.",
   "lose-1-10|gt-80":  "Déficit firme y sostenible, sin restringir grupos enteros de alimentos. Estimado: 12-16 semanas.",
 
-  // PLAN 2 — Pérdida de peso (10-15 kg y más)
   "lose-10-plus|lt-60": "Plan por bloques de 8 semanas con pausas estratégicas. Estimado: 5-7 meses.",
   "lose-10-plus|60-70": "Déficit por fases con revisiones mensuales. Estimado: 6-9 meses.",
   "lose-10-plus|70-80": "Plan estructurado en bloques alternando déficit y mantenimiento. Estimado: 8-12 meses.",
   "lose-10-plus|gt-80": "Plan a largo plazo por ciclos. La paciencia es tu mayor aliada. Estimado: 12+ meses.",
 
-  // PLAN 3 — Tonificar
   "tone|lt-60":  "Mantenimiento calórico con energía suficiente para entrenar fuerza. Misma báscula, distinto cuerpo en 12 semanas.",
   "tone|60-70":  "Mantenimiento con ligera recomposición. Foco en proteína alta y entrenamiento progresivo.",
   "tone|70-80":  "Recomposición corporal: mantener peso bajando ligeramente la grasa y subiendo masa muscular.",
   "tone|gt-80":  "Recomposición + ligero déficit. Verás el cambio antes en el espejo que en la báscula.",
 
-  // PLAN 4 — Pérdida de grasa + ganar masa muscular
   "fat-loss-muscle|lt-60": "Superávit calórico ligero con foco en fuerza. La grasa baja por composición, no por déficit. 4-6 meses.",
   "fat-loss-muscle|60-70": "Recomposición clásica: mantenimiento ajustado, proteína alta, fuerza progresiva. 5-7 meses.",
   "fat-loss-muscle|70-80": "Déficit muy ligero + entrenamiento de fuerza prioritario. 6-9 meses.",
   "fat-loss-muscle|gt-80": "Déficit estructurado preservando masa muscular con fuerza pesada. 8-12 meses.",
 
-  // PLAN 5 — Reducir inflamación abdominal
   "anti-inflammation|lt-60": "Plan antiinflamatorio con foco digestivo: reducir ultraprocesados, alcohol, y priorizar fibra fermentable. 6-8 semanas.",
   "anti-inflammation|60-70": "Protocolo antiinflamatorio + ajuste de horarios de comida. Resultados visibles en 4-6 semanas.",
   "anti-inflammation|70-80": "Reducción de inflamación crónica vía alimentación, sueño y movilidad. 8-12 semanas.",
@@ -52,7 +47,7 @@ export const ACTIVITY_NOTES: Record<string, string | null> = {
   "very-active": "Tu día es muy activo: cuidaremos la recuperación y la fuerza para que ese movimiento te sume sin desgastarte.",
 };
 
-// ───────── Intro mensajes: 5 goals × 5 obstacles ─────────
+// ───────── Intro mensajes: 5 goals × 6 obstacles ─────────
 export const INTRO_MESSAGES: Record<string, Record<string, string>> = {
   "lose-1-10": {
     "no-time":        "Tu vida ya está llena. Lo que sigue no te pide más tiempo: te pide hacer lo correcto en el poco que tienes.",
@@ -153,86 +148,245 @@ export const OBSTACLE_SECTIONS: Record<string, ObstacleSection> = {
   },
 };
 
-// ───────── Lista de la compra base ─────────
+// ───────── Lista de la compra (categorías exactas) ─────────
 export const BASE_SHOPPING: ShoppingSection[] = [
   {
     category: "Proteínas",
     items: [
-      { name: "Pechuga de pollo o pavo" },
-      { name: "Huevos camperos" },
-      { name: "Pescado blanco (merluza, lubina, dorada)" },
-      { name: "Pescado azul (salmón, sardinas, caballa)" },
+      { name: "Huevos" },
+      { name: "Pescado" },
+      { name: "Pollo" },
+      { name: "Pavo" },
       { name: "Yogur griego natural" },
-      { name: "Queso fresco o cottage" },
-      { name: "Legumbres (lentejas, garbanzos)" },
-      { name: "Tofu firme" },
+      { name: "Queso fresco batido" },
     ],
   },
   {
-    category: "Verduras",
+    category: "Hidratos",
     items: [
-      { name: "Espinacas y hojas verdes" },
-      { name: "Brócoli o coliflor" },
-      { name: "Calabacín y berenjena" },
+      { name: "Arroz (integral)" },
+      { name: "Patata" },
+      { name: "Boniato" },
+      { name: "Legumbres" },
+      { name: "Pan (100% integral)" },
+      { name: "Avena" },
+    ],
+  },
+  {
+    category: "Fruta y verdura",
+    items: [
+      { name: "Brócoli" },
       { name: "Pimientos" },
-      { name: "Tomates" },
-      { name: "Pepino y rúcula" },
-      { name: "Cebolla, ajo" },
-      { name: "Espárragos o judía verde" },
-    ],
-  },
-  {
-    category: "Frutas",
-    items: [
-      { name: "Frutos rojos (arándanos, fresas, frambuesas)", note: "antiinflamatorios" },
-      { name: "Manzana o pera" },
+      { name: "Zanahoria" },
+      { name: "Frutos rojos" },
       { name: "Kiwi" },
-      { name: "Plátano (entrenamiento)" },
-      { name: "Naranja o mandarinas" },
+      { name: "Manzana" },
     ],
   },
   {
     category: "Grasas saludables",
     items: [
-      { name: "Aguacate" },
       { name: "Aceite de oliva virgen extra" },
-      { name: "Frutos secos crudos (almendras, nueces)" },
-      { name: "Semillas (chía, lino, calabaza)" },
+      { name: "Frutos secos" },
+      { name: "Aguacate" },
       { name: "Aceitunas" },
     ],
   },
   {
-    category: "Carbohidratos complejos",
+    category: "Extras",
     items: [
-      { name: "Arroz integral o basmati" },
-      { name: "Patata o boniato" },
-      { name: "Avena en copos" },
-      { name: "Pan integral 100% o masa madre" },
-      { name: "Quinoa" },
-    ],
-  },
-  {
-    category: "Despensa",
-    items: [
-      { name: "Especias: cúrcuma, jengibre, comino, orégano, pimentón" },
-      { name: "Vinagre de manzana" },
-      { name: "Tahini o crema de cacahuete 100%" },
-      { name: "Caldo de huesos o caldo vegetal" },
-      { name: "Té verde o infusiones" },
+      { name: "Caldo" },
+      { name: "Chocolate negro +85%" },
+      { name: "Especias (pimienta negra, curry, cúrcuma)" },
+      { name: "Salsa de soja / tomate triturado / tomate tamizado" },
     ],
   },
 ];
 
-// ───────── Portion guides per weight range ─────────
+// ───────── Planes nutricionales exactos por grupo y peso ─────────
+// Grupo nutricional: A = goals 1, 2, 4 (lose/recomp) | B = goal 3 (tone) | C = goal 5 (anti-inflam)
+export type NutritionGroup = "A" | "B" | "C";
+
+type MealSet = { breakfast: string; lunch: string; snack: string; dinner: string };
+
+export const MEAL_PLANS: Record<NutritionGroup, Record<string, MealSet>> = {
+  // ───── Grupo A — Pérdida de peso / Recomposición (planes 1, 2, 4) ─────
+  A: {
+    "lt-60": {
+      breakfast: "60 g pan integral · 70 g queso cottage o fiambre de pavo 99% · 30 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "130 g de boniato o 40 g de arroz integral (peso en crudo) · 150 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata cocida (peso en crudo) · 150 g verdura y hortalizas · 120 g salmón · 5 g AOVE + especias. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+    "60-70": {
+      breakfast: "80 g pan integral · 70 g queso cottage o fiambre de pavo 99% · 30 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "150 g de boniato o 50 g de arroz integral (peso en crudo) · 150 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata cocida (peso en crudo) · 150 g verdura y hortalizas · 120 g salmón · 5 g AOVE. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+    "70-80": {
+      breakfast: "80 g pan integral · 80 g queso cottage o fiambre de pavo 99% · 40 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "200 g de boniato o 60 g de arroz integral (peso en crudo) · 160 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata (peso en crudo) · 150 g verdura y hortalizas · 130 g salmón · 5 g AOVE. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+    "gt-80": {
+      breakfast: "80 g pan integral · 80 g queso cottage o fiambre de pavo 99% · 40 g aguacate · 1 fruta + 10 g frutos secos · café con leche desnatada o vegetal.",
+      lunch:    "200 g de boniato o 60 g de arroz integral (peso en crudo) · 160 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "120 g queso fresco batido 0% + 1 fruta + 10 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "200 g patata (peso en crudo) · 150 g verdura y hortalizas · 130 g salmón · 5 g AOVE + especias. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+  },
+
+  // ───── Grupo B — Tonificar (plan 3) ─────
+  B: {
+    "lt-60": {
+      breakfast: "70 g pan integral · 70 g queso cottage o fiambre de pavo 99% · 30 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "150 g de boniato o 50 g de arroz integral (peso en crudo) · 150 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata (peso en crudo) · 150 g verdura y hortalizas · 120 g salmón · 5 g AOVE. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+    "60-70": {
+      breakfast: "80 g pan integral · 80 g queso cottage o fiambre de pavo 99% · 40 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "200 g de boniato o 60 g de arroz integral (peso en crudo) · 160 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata (peso en crudo) · 150 g verdura y hortalizas · 130 g salmón · 5 g AOVE. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+    "70-80": {
+      breakfast: "80 g pan integral · 80 g queso cottage o fiambre de pavo 99% · 40 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "200 g de boniato o 60 g de arroz integral (peso en crudo) · 160 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata (peso en crudo) · 150 g verdura y hortalizas · 130 g salmón · 5 g AOVE. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+    "gt-80": {
+      breakfast: "80 g pan integral · 80 g queso cottage o fiambre de pavo 99% · 40 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "200 g de boniato o 60 g de arroz integral (peso en crudo) · 160 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata (peso en crudo) · 150 g verdura y hortalizas · 130 g salmón · 5 g AOVE. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+  },
+
+  // ───── Grupo C — Reducir inflamación abdominal (plan 5) ─────
+  C: {
+    "lt-60": {
+      breakfast: "60 g pan integral de espelta o centeno · 70 g queso cottage o fiambre de pavo 99% · 30 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "130 g de boniato (peso en crudo) · 150 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata cocida (peso en crudo) · 150 g verdura y hortalizas · 120 g salmón · 5 g AOVE + especias. Kéfir con canela + 50 g arándanos.",
+    },
+    "60-70": {
+      breakfast: "70 g pan integral de espelta o centeno · 70 g queso cottage o fiambre de pavo 99% · 30 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "150 g de boniato (peso en crudo) · 150 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata cocida (peso en crudo) · 150 g verdura y hortalizas · 120 g salmón · 5 g AOVE. Kéfir con canela + 50 g arándanos.",
+    },
+    "70-80": {
+      breakfast: "70 g pan integral de espelta o centeno · 80 g queso cottage o fiambre de pavo 99% · 40 g aguacate · 1 fruta · café con leche desnatada o vegetal.",
+      lunch:    "180 g de boniato (peso en crudo) · 150 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "Yogur de proteínas natural + 1 fruta + 15 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata cocida (peso en crudo) · 150 g verdura y hortalizas · 130 g salmón · 5 g AOVE. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+    "gt-80": {
+      breakfast: "70 g pan integral · 80 g queso cottage o fiambre de pavo 99% · 40 g aguacate · 1 fruta + 10 g frutos secos · café con leche desnatada o vegetal.",
+      lunch:    "200 g de boniato (peso en crudo) · 160 g pechuga de pollo · 150 g verduras (berenjena, calabacín, champiñones, tomate…) · 5 g AOVE + especias. Té verde.",
+      snack:    "120 g queso fresco batido 0% + 1 fruta + 10 g de frutos secos (almendras, avellanas o nueces).",
+      dinner:   "150 g patata cocida (peso en crudo) · 150 g verdura y hortalizas · 130 g salmón · 5 g AOVE + especias. Yogur desnatado natural o kéfir con canela + 50 g arándanos.",
+    },
+  },
+};
+
+// ───────── Planes de entrenamiento exactos ─────────
+export const WORKOUT_PLANS: Record<"gym" | "home", Record<"adult" | "plus60", WorkoutDay>> = {
+  gym: {
+    adult: {
+      title: "Entrenamiento en el gimnasio — 1 día",
+      duration: "60 min aprox.",
+      exercises: [
+        { name: "Calentamiento", sets: "—", reps: "5 min cardio cíclico (elíptica, cinta o bici) + 2-5 min movilidad articular" },
+        { name: "Prensa de piernas sentada", sets: "4", reps: "10-15 reps" },
+        { name: "Femoral tumbado en máquina", sets: "4", reps: "10-15 reps" },
+        { name: "Jalón al pecho con barra (agarre supino)", sets: "4", reps: "10-15 reps" },
+        { name: "Press de hombro en máquina", sets: "4", reps: "10-12 reps" },
+        { name: "Superserie · Sentadilla sumo con mancuerna + Curl bíceps con mancuernas", sets: "3", reps: "12-15 reps cada uno", note: "alternas un ejercicio y otro; descanso 60-90 s solo al terminar la superserie completa." },
+        { name: "Plancha abdominal (con o sin apoyo de rodillas según nivel)", sets: "2", reps: "10-30 segundos" },
+        { name: "Estiramientos finales", sets: "—", reps: "5 min, 8-10 s por estiramiento" },
+      ],
+      notes: [
+        "Antes del primer ejercicio realiza 1-2 series de aproximación al peso de trabajo.",
+        "Movimientos controlados y congestionando. Intensidad percibida 8/10.",
+        "Ajusta siempre las máquinas a tus medidas antes de empezar.",
+      ],
+    },
+    plus60: {
+      title: "Entrenamiento en el gimnasio — 1 día (+60 años)",
+      duration: "45-55 min",
+      exercises: [
+        { name: "Calentamiento", sets: "—", reps: "5 min cardio cíclico (elíptica, cinta o bici) + 2-5 min movilidad articular" },
+        { name: "Prensa de piernas sentada", sets: "3", reps: "10-12 reps" },
+        { name: "Remo en máquina asistida", sets: "3", reps: "10-12 reps" },
+        { name: "Femoral sentado en máquina", sets: "3", reps: "10-12 reps" },
+        { name: "Press de hombro en máquina", sets: "3", reps: "10-12 reps" },
+        { name: "Superserie · Sentadilla sumo con mancuerna + Curl bíceps con mancuernas", sets: "2", reps: "10-12 reps cada uno", note: "alternas un ejercicio y otro; descanso 60-90 s solo al terminar la superserie completa." },
+        { name: "Plancha abdominal con apoyo de rodillas", sets: "2", reps: "10-20 segundos" },
+        { name: "Estiramientos finales", sets: "—", reps: "5 min, 8-10 s por estiramiento" },
+      ],
+      notes: [
+        "Antes del primer ejercicio realiza 1-2 series de aproximación al peso de trabajo.",
+        "Movimientos controlados. Intensidad percibida 7/10.",
+        "Técnica antes que peso. Si algo te molesta una articulación, reduce rango.",
+      ],
+    },
+  },
+  home: {
+    adult: {
+      title: "Entrenamiento en casa — 1 día",
+      duration: "40-50 min",
+      exercises: [
+        { name: "Calentamiento", sets: "—", reps: "5-7 min · Marcha con movimiento de brazos (1 min) + círculos de brazos adelante y atrás (1 min)" },
+        { name: "Sentadilla con toque de rodilla alterno", sets: "3-5", reps: "12-15 reps" },
+        { name: "Aperturas laterales combinadas con frontales (mancuernas)", sets: "3-5", reps: "12-15 reps" },
+        { name: "Lunge alterno con bíceps (mancuernas)", sets: "3-5", reps: "12-15 reps" },
+        { name: "Remo con mancuernas", sets: "3-5", reps: "12-15 reps", note: "tronco ligeramente inclinado, espalda recta, codos cerca del cuerpo." },
+        { name: "Puente de glúteo con abducción (banda elástica)", sets: "3-5", reps: "12-15 reps" },
+        { name: "Patada de tríceps con mancuerna", sets: "3-5", reps: "12-15 reps" },
+        { name: "Cardio final · Jumping jacks + Skipping con toque a talones", sets: "2", reps: "30-60 s por ejercicio, en circuito alterno" },
+      ],
+      notes: [
+        "Formato circuito: ejercicios seguidos. Descanso 30-60 s entre ejercicios y 1-1,5 min entre rondas.",
+        "Realiza de 3 a 5 rondas según tu nivel.",
+      ],
+    },
+    plus60: {
+      title: "Entrenamiento en casa — 1 día (+60 años)",
+      duration: "35-45 min",
+      exercises: [
+        { name: "Calentamiento", sets: "—", reps: "5-7 min · Marcha con movimiento de brazos (1 min) + círculos de brazos adelante y atrás (1 min)" },
+        { name: "Sentadilla", sets: "2-4", reps: "10-12 reps", note: "pies al ancho de las caderas, espalda recta y pecho abierto." },
+        { name: "Remo con mancuernas", sets: "2-4", reps: "10-12 reps", note: "tronco ligeramente inclinado, una o dos mancuernas, codo cerca del cuerpo." },
+        { name: "Zancada alterna en el lugar", sets: "2-4", reps: "10-12 reps" },
+        { name: "Bíceps alterno con mancuernas", sets: "2-4", reps: "10-12 reps" },
+        { name: "Puente de glúteo", sets: "2-4", reps: "10-12 reps", note: "tumbada boca arriba, rodillas flexionadas, eleva cadera apretando glúteos." },
+        { name: "Patada de tríceps con mancuerna", sets: "2-4", reps: "10-12 reps" },
+        { name: "Movilidad final · gato-vaca apoyada + apertura de pecho y hombros + movilidad de cadera con apoyo", sets: "—", reps: "8-10 reps de cada movimiento" },
+      ],
+      notes: [
+        "Formato circuito: ejercicios seguidos. Descanso 60-90 s entre ejercicios y 1,5-2 min entre rondas.",
+        "Realiza de 2 a 4 rondas según tu nivel.",
+      ],
+    },
+  },
+};
+
+// kept for compatibility (not used by meal builder anymore)
 export type Portion = {
-  proteinPalm: string;       // ej. "1 palma"
-  carbFist: string;          // ej. "1 puñado"
-  fatThumb: string;          // ej. "1 cucharada"
-  extraSnack: boolean;       // ¿añadir media mañana?
+  proteinPalm: string;
+  carbFist: string;
+  fatThumb: string;
+  extraSnack: boolean;
 };
 export const PORTIONS_BY_WEIGHT: Record<string, Portion> = {
-  "lt-60":  { proteinPalm: "1 palma",       carbFist: "1 puñado pequeño", fatThumb: "1 cucharada",   extraSnack: false },
-  "60-70":  { proteinPalm: "1 palma",       carbFist: "1 puñado",         fatThumb: "1 cucharada",   extraSnack: true  },
-  "70-80":  { proteinPalm: "1-1,5 palmas",  carbFist: "1,5 puñados",      fatThumb: "1,5 cucharadas",extraSnack: true  },
-  "gt-80":  { proteinPalm: "1,5 palmas",    carbFist: "1,5 puñados",      fatThumb: "1,5 cucharadas",extraSnack: true  },
+  "lt-60":  { proteinPalm: "1 palma",       carbFist: "1 puñado pequeño", fatThumb: "1 cucharada",    extraSnack: false },
+  "60-70":  { proteinPalm: "1 palma",       carbFist: "1 puñado",         fatThumb: "1 cucharada",    extraSnack: true  },
+  "70-80":  { proteinPalm: "1-1,5 palmas",  carbFist: "1,5 puñados",      fatThumb: "1,5 cucharadas", extraSnack: true  },
+  "gt-80":  { proteinPalm: "1,5 palmas",    carbFist: "1,5 puñados",      fatThumb: "1,5 cucharadas", extraSnack: true  },
 };
