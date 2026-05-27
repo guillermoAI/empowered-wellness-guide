@@ -1,6 +1,7 @@
 import {
-  BASE_SHOPPING, INTRO_MESSAGES, OBSTACLE_SECTIONS, STRATEGY_TEXTS, ACTIVITY_NOTES, PORTIONS_BY_WEIGHT,
-  type ShoppingSection, type WorkoutDay, type MealDay, type ObstacleSection, type Exercise,
+  BASE_SHOPPING, INTRO_MESSAGES, OBSTACLE_SECTIONS, STRATEGY_TEXTS, ACTIVITY_NOTES,
+  MEAL_PLANS, WORKOUT_PLANS, type NutritionGroup,
+  type ShoppingSection, type WorkoutDay, type MealDay, type ObstacleSection,
 } from "./planTemplates";
 
 export type Goal = "lose-1-10" | "lose-10-plus" | "tone" | "fat-loss-muscle" | "anti-inflammation";
