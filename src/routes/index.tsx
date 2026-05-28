@@ -289,20 +289,21 @@ function MisChicas() {
   );
 }
 
-function PhotoPlaceholder({ name, tone }: { name: string; tone: "rose" | "muted" }) {
-  const bg = tone === "rose"
-    ? "bg-gradient-to-br from-secondary via-accent to-rose-tint"
-    : "bg-gradient-to-br from-muted via-background to-secondary/50";
+function PhotoPlaceholder({ name, photo }: { name: string; photo: string }) {
   return (
-    <div className={`relative aspect-[4/5] w-full md:aspect-auto md:min-h-full ${bg}`}>
+    <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted md:aspect-auto md:min-h-full">
+      <img
+        src={photo}
+        alt={`${name} — antes y después`}
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        loading="lazy"
+      />
       <div className="absolute left-4 top-4 rounded-full bg-background/85 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-foreground">
         Antes · Después
       </div>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="font-serif text-xl text-foreground/30">{name}</span>
-      </div>
     </div>
   );
+
 }
 
 function FinalCTA() {
