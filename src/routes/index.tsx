@@ -169,11 +169,11 @@ const CHICAS: Chica[] = [
     age: 38,
     job: "Gerente comercial",
     kids: "1 hija",
-    identity: "La que viajaba semanalmente y pensaba que no podía cuidarse.",
+    identity: "Viajaba semanalmente y pensaba que no podía cuidarse.",
     story:
-      "Por su trabajo viajaba cada semana y tenía eventos fuera constantemente. Entrenaba antes, pero llevaba tiempo parada.",
+      "Por su trabajo viajaba y tenía eventos fuera constantemente. Llevaba tiempo sin actividad física y se sentía muy estancada, sin energía y frustrada.",
     result:
-      "En 3 meses entrenando progresivamente, integrando hábitos saludables y una alimentación equilibrada a pesar de los eventos: desinflamación, bajada de volumen y de peso.",
+      "En 3 meses ha perdido 6 kilos y desinflamado su cuerpo, integrando hábitos saludables a pesar de su ritmo de vida. Ahora vuelve a reconocerse.",
     photo: nataliaImg,
   },
   {
@@ -192,59 +192,60 @@ const CHICAS: Chica[] = [
     name: "Montse",
     age: 45,
     job: "Arquitecta",
-    kids: "1 hijo",
-    identity: "Entrenaba sin resultados y se sentía estancada… hasta que entendió qué le faltaba.",
+    kids: "2 hijos",
+    identity: "Entrenaba sin resultados y se sentía estancada, hasta que entendió qué le faltaba.",
     story:
       "Entrenaba, pero sin rutina ni estructura. No veía cambios en su cuerpo y no entendía qué estaba fallando.",
-    result: "Perdió 4 kg en 3 meses y recompuso su cuerpo, viéndose más firme y definida.",
+    result:
+      "Perdió 5 kg en 3 meses y recompuso su cuerpo, desinflamando su abdomen y viéndose más tonificada y definida.",
     photo: montseImg,
   },
   {
     name: "Elena",
     age: 47,
-    job: "Contable · perimenopausia",
+    job: "Contable",
     kids: "1 hijo",
-    identity: "No se reconocía cuando se miraba al espejo… recuperó su cuerpo y su confianza.",
+    identity: "No se reconocía cuando se miraba al espejo y recuperó su cuerpo y su confianza.",
     story:
       "Veía cómo su cuerpo cambiaba con la perimenopausia: más flácida, más barriga y sin reconocerse. Pensaba que ya no tenía solución.",
     result:
-      "Perdió 5,5 kg en 3 meses y volvió a sentirse firme, con vientre, brazos y glúteos tonificados.",
+      "Perdió 5,5 kg en 3 meses y volvió a sentirse bien consigo misma, ha desinflamado su abdomen y tonificado su cuerpo.",
     photo: elenaImg,
+  },
+  {
+    name: "Inés",
+    age: 62,
+    job: "Ama de casa",
+    kids: "",
+    identity: "Pensaba que el pilates y caminar eran suficientes, hasta que entendió lo que su cuerpo necesitaba de verdad.",
+    story:
+      "Hacía pilates y caminaba, pero nunca había entrenado fuerza. Le preocupaba la osteopenia y sentía que le faltaba un enfoque más claro y personalizado.",
+    result:
+      "En 3 meses perdió 3 kg, mejoró su condición muscular y empezó a sentirse más fuerte, más funcional y segura en su cuerpo y cuidando su salud.",
+    photo: raquelImg,
   },
   {
     name: "Susana",
     age: 51,
-    job: "Enfermera · premenopausia",
+    job: "Enfermera",
     kids: "3 hijos",
     identity: "No conseguía volver a su peso anterior y necesitaba un plan a su medida.",
     story:
-      "Había cogido 5 kg en poco tiempo. Hacía clases dirigidas pero no veía resultados y quería ayuda personalizada.",
+      "Había cogido 5 kg en poco tiempo, y era algo que le preocupaba. Hacía clases dirigidas pero no veía resultados y quería ayuda personalizada.",
     result:
-      "4 kg en 2 meses (y seguimos). Cintura de 85 a 79 cm, peso de 65 a 61 kg, entrenando fuerza 3 días a la semana adaptado a ella.",
+      "5 kg en 3 meses con un plan adaptado a ella, a su etapa hormonal y su ritmo de vida. Ahora se siente muy bien consigo misma y vuelve a reconocerse.",
     photo: susanaImg,
-  },
-  {
-    name: "Raquel",
-    age: 48,
-    job: "Trabajadora en Mercadona",
-    kids: "2 hijas",
-    identity: "Dejó de obsesionarse con la báscula y cambió su cuerpo de verdad.",
-    story:
-      "Trabajo muy demandante, cansancio constante y poco margen para cuidarse. Sentía que hacía lo que podía, pero no veía cambios.",
-    result:
-      "Perdió 4 cm de cintura en 3 meses y transformó su cuerpo sin obsesionarse con la báscula.",
-    photo: raquelImg,
   },
   {
     name: "Silvia",
     age: 53,
     job: "Limpiadora",
     kids: "1 hija",
-    identity: "Pensaba que solo con comer bien era suficiente… y entendió lo que le faltaba.",
+    identity: "Pensaba que con comer bien era suficiente y entendió lo que realmente le faltaba.",
     story:
-      "No hacía ejercicio, pero intentaba cuidar su alimentación. Aun así no veía cambios y pensaba que eso no era suficiente.",
+      "No hacía ejercicio y, aunque cuidaba la alimentación, no veía cambios. Sentía que algo estaba fallando y se frustraba al no avanzar.",
     result:
-      "Perdió 3 kg en 2 meses, redujo volumen y empezó a verse más firme, con más energía. Le vuelve a sentar bien la ropa que había dejado de ponerse.",
+      "En 2 meses perdió 3 kg, redujo volumen y empezó a verse más firme y con más energía. Ahora vuelve a sentirse cómoda con ropa que había dejado de ponerse.",
     photo: silviaImg,
   },
 ];
