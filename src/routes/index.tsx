@@ -264,7 +264,7 @@ function MisChicas() {
               transition={{ duration: 0.6, ease: easing, delay: (i % 3) * 0.08 }}
               className="overflow-hidden rounded-3xl border border-border bg-card md:grid md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
             >
-              <PhotoPlaceholder name={c.name} tone={c.tone} />
+              <PhotoPlaceholder name={c.name} photo={c.photo} />
               <div className="p-8 sm:p-10">
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
                   <h3 className="font-serif text-2xl">{c.name}, {c.age}</h3>
