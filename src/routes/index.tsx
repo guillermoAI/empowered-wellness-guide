@@ -1,6 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Navbar, Footer } from "@/components/site-chrome";
+import nataliaImg from "@/assets/chicas/natalia.jpg";
+import cristinaImg from "@/assets/chicas/cristina.jpg";
+import montseImg from "@/assets/chicas/montse.jpg";
+import elenaImg from "@/assets/chicas/elena.jpg";
+import susanaImg from "@/assets/chicas/susana.jpg";
+import raquelImg from "@/assets/chicas/raquel.jpg";
+import silviaImg from "@/assets/chicas/silvia.jpg";
+
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -143,8 +151,9 @@ type Chica = {
   identity: string;
   story: string;
   result: string;
-  tone: "rose" | "muted";
+  photo: string;
 };
+
 
 const CHICAS: Chica[] = [
   {
