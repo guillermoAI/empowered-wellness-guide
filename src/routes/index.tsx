@@ -151,8 +151,9 @@ type Chica = {
   identity: string;
   story: string;
   result: string;
-  tone: "rose" | "muted";
+  photo: string;
 };
+
 
 const CHICAS: Chica[] = [
   {
