@@ -8,6 +8,7 @@ import elenaImg from "@/assets/chicas/elena.jpg";
 import susanaImg from "@/assets/chicas/susana.jpg";
 import raquelImg from "@/assets/chicas/raquel.jpg";
 import silviaImg from "@/assets/chicas/silvia.jpg";
+import vikyImg from "@/assets/viky.png";
 
 
 export const Route = createFileRoute("/")({ component: Index });
