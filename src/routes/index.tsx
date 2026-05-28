@@ -166,7 +166,7 @@ const CHICAS: Chica[] = [
       "Por su trabajo viajaba cada semana y tenía eventos fuera constantemente. Entrenaba antes, pero llevaba tiempo parada.",
     result:
       "En 3 meses entrenando progresivamente, integrando hábitos saludables y una alimentación equilibrada a pesar de los eventos: desinflamación, bajada de volumen y de peso.",
-    tone: "rose",
+    photo: nataliaImg,
   },
   {
     name: "Cristina",
@@ -178,7 +178,7 @@ const CHICAS: Chica[] = [
       "No entrenaba, no se alimentaba bien y llevaba una vida totalmente sedentaria. Tenía complejo con los brazos y se planteaba operarse.",
     result:
       "Perdió 12 kg en 5 meses entrenando desde casa, eliminó la barriga, mejoró su composición corporal al completo y recuperó energía, motivación y entusiasmo por la vida.",
-    tone: "muted",
+    photo: cristinaImg,
   },
   {
     name: "Montse",
@@ -189,7 +189,7 @@ const CHICAS: Chica[] = [
     story:
       "Entrenaba, pero sin rutina ni estructura. No veía cambios en su cuerpo y no entendía qué estaba fallando.",
     result: "Perdió 4 kg en 3 meses y recompuso su cuerpo, viéndose más firme y definida.",
-    tone: "rose",
+    photo: montseImg,
   },
   {
     name: "Elena",
@@ -201,7 +201,7 @@ const CHICAS: Chica[] = [
       "Veía cómo su cuerpo cambiaba con la perimenopausia: más flácida, más barriga y sin reconocerse. Pensaba que ya no tenía solución.",
     result:
       "Perdió 5,5 kg en 3 meses y volvió a sentirse firme, con vientre, brazos y glúteos tonificados.",
-    tone: "muted",
+    photo: elenaImg,
   },
   {
     name: "Susana",
@@ -213,7 +213,7 @@ const CHICAS: Chica[] = [
       "Había cogido 5 kg en poco tiempo. Hacía clases dirigidas pero no veía resultados y quería ayuda personalizada.",
     result:
       "4 kg en 2 meses (y seguimos). Cintura de 85 a 79 cm, peso de 65 a 61 kg, entrenando fuerza 3 días a la semana adaptado a ella.",
-    tone: "rose",
+    photo: susanaImg,
   },
   {
     name: "Raquel",
@@ -225,7 +225,7 @@ const CHICAS: Chica[] = [
       "Trabajo muy demandante, cansancio constante y poco margen para cuidarse. Sentía que hacía lo que podía, pero no veía cambios.",
     result:
       "Perdió 4 cm de cintura en 3 meses y transformó su cuerpo sin obsesionarse con la báscula.",
-    tone: "muted",
+    photo: raquelImg,
   },
   {
     name: "Silvia",
@@ -237,7 +237,7 @@ const CHICAS: Chica[] = [
       "No hacía ejercicio, pero intentaba cuidar su alimentación. Aun así no veía cambios y pensaba que eso no era suficiente.",
     result:
       "Perdió 3 kg en 2 meses, redujo volumen y empezó a verse más firme, con más energía. Le vuelve a sentar bien la ropa que había dejado de ponerse.",
-    tone: "rose",
+    photo: silviaImg,
   },
 ];
 
