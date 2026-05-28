@@ -125,8 +125,15 @@ function About() {
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7, ease: easing }}
-          className="aspect-square w-full max-w-md rounded-3xl bg-gradient-to-br from-secondary via-accent to-background"
-        />
+          className="relative aspect-square w-full max-w-md overflow-hidden rounded-3xl bg-muted"
+        >
+          <img
+            src={vikyImg}
+            alt="Viky — entrenadora personal"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            loading="lazy"
+          />
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7, ease: easing, delay: 0.1 }}
