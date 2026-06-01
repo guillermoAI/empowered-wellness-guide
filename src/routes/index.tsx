@@ -290,9 +290,6 @@ function MisChicas() {
           ))}
         </div>
 
-        <p className="mt-10 text-center text-xs text-muted-foreground">
-          * Sustituye cada marco con la foto real (antes/después combinados) de cada chica.
-        </p>
       </div>
     </section>
   );
