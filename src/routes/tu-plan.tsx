@@ -19,7 +19,7 @@ function TuPlanPage() {
 
   const plan = generatePlan(answers);
 
-  const whatsappHref = `https://wa.me/34000000000?text=${encodeURIComponent(
+  const whatsappHref = `https://wa.me/34607459660?text=${encodeURIComponent(
     `Hola, acabo de recibir mi plan personalizado y quiero el plan completo. Mi nombre es ${answers.name}.`
   )}`;
 
